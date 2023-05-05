@@ -1,5 +1,6 @@
 :root {
     --boxColor: #0ff7;
+    --rotateSpeed: 10s;
 }
 
 body{
@@ -16,6 +17,11 @@ body{
 .scene{
     position: relative;
     transform-style: preserve-3d;
+    animation: sceneRotate var(--rotateSpeed) infinite linear;
+
+    @keyframes sceneRotate {
+        to { transform: rotateY(360deg); }
+    }
 }
 
 .ball{
@@ -23,7 +29,7 @@ body{
     height: 1em;
     border-radius: 50%;
     background-color: lightblue;
-
+    transform-style: preserve-3d;
     position: absolute;
     left: -.5em;
     bottom: 1em;
@@ -32,6 +38,7 @@ body{
         lightblue, 
         #000
     );
+    animation: sceneRotate var(--rotateSpeed) infinite linear reverse;
 }   
 
 .ballShadow{
@@ -44,12 +51,11 @@ body{
 .cube{
     width: 2em;
     height: 2em;
-    
+    transform-style: preserve-3d;
     position: absolute;
     top: -1em;
     left: -1em;
     
-    perspective: 10em;
     perspective-origin: 50% calc(50% - 2em);
     
     .left, .right, .front, .back{
@@ -62,7 +68,7 @@ body{
 
     .front{transform: translateZ(1em);}
     .right{transform: rotateY(90deg) translateZ(1em);}
-    .back{transform: rotateY(180deg)translateZ(1em);}
+    .back{transform: rotateY(180deg) translateZ(1em); }
     .left{transform: rotateY(270deg) translateZ(1em);}
 
     .top{
@@ -71,25 +77,32 @@ body{
         height: 2em;
         background: var(--boxColor);
         transform: translateY(-50%) rotateX(90deg);
+        box-shadow: 0 0 0.5 #000a inset;
     }
 
     .bottom{
         position: absolute;
         width: 2em;
         height: 2em;
-        background: #0007;
+        background: var(--boxColor);
         bottom: 0;
         transform: translateY(50%) rotateX(90deg);
-        box-shadow: 0 0 0.5 #000a;
+        box-shadow: 0 0 0.5 #000a inset;
     }
 }
 
+.cube:hover{
+    .left, .right, .front, .back, .bottom, .top{
+        background: rgba(203, 72, 72, 0.744);
+    }
+}
 
-
-
-
-
-
+.cube:mou{
+    .left, .right, .front, .back, .bottom, .top{
+        background: green;
+        left: 10em;
+    }
+}
 
 .floor{
     position: absolute;

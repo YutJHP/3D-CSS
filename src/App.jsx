@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import './Playground.scss'
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
     <body>
       <div className='scene'>
         <div className='floor'></div>
-        <div className='cube'>
+        <div className='cube' onClick={e=>Green()} onMouseEnter={e => Hover()} onMouseLeave={e => Reset()}>
           <div className='front'></div>
           <div className='back'></div>
           <div className='left'></div>
@@ -27,4 +26,59 @@ function App() {
   )
 }
 
-export default App
+var clicked=false;
+
+function Green(){
+  if(clicked){
+    document.getElementsByClassName("front")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("back")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("left")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("right")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("top")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("bottom")[0].style.backgroundColor = "#0ff7";
+    clicked = false;
+  } else {
+    document.getElementsByClassName("front")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("back")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("left")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("right")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("top")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("bottom")[0].style.backgroundColor = "green";
+    clicked = true;
+  }
+}
+
+
+function Hover(){
+
+  document.getElementsByClassName("front")[0].style.backgroundColor = "#85050597";
+  document.getElementsByClassName("back")[0].style.backgroundColor = "#85050597";
+  document.getElementsByClassName("left")[0].style.backgroundColor = "#85050597";
+  document.getElementsByClassName("right")[0].style.backgroundColor = "#85050597";
+  document.getElementsByClassName("top")[0].style.backgroundColor = "#85050597";
+  document.getElementsByClassName("bottom")[0].style.backgroundColor = "#85050597";
+
+
+}
+
+
+function Reset(){
+  if(clicked){
+    document.getElementsByClassName("front")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("back")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("left")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("right")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("top")[0].style.backgroundColor = "green";
+    document.getElementsByClassName("bottom")[0].style.backgroundColor = "green";
+  } else {
+    document.getElementsByClassName("front")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("back")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("left")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("right")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("top")[0].style.backgroundColor = "#0ff7";
+    document.getElementsByClassName("bottom")[0].style.backgroundColor = "#0ff7";
+  }
+}
+
+export default App;
+
