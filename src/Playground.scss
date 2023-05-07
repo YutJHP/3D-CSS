@@ -1,6 +1,7 @@
 :root {
     --boxColor: #0ff7;
-    --rotateSpeed: 10s;
+    --rotateSpeed: 30s;
+    --bounceSpeed: 2s;
 }
 
 body{
@@ -38,13 +39,26 @@ body{
         lightblue, 
         #000
     );
-    animation: sceneRotate var(--rotateSpeed) infinite linear reverse;
+    animation: 
+        ballBounce var(--bounceSpeed) infinite ease-out,
+        sceneRotate var(--rotateSpeed) infinite linear reverse;
+
+    @keyframes ballBounce {
+        0%, 100% { bottom: 0.75em; }
+        50%, 50% { bottom: 3em; animation-timing-function: ease-in; }
+    }
 }   
 
 .ballShadow{
     position: absolute;
     width: 100%; height: 100%;
     background-image: radial-gradient(#0007, #0000 50%);
+    animation: ballShadow var(--bounceSpeed) infinite ease-out;
+
+    @keyframes ballShadow {
+        0%, 100% { opacity: 1;}
+        20%, 60% { opacity: 0.5; animation-timing-function: ease-in; }
+    }
 
 }
 
@@ -53,10 +67,16 @@ body{
     height: 2em;
     transform-style: preserve-3d;
     position: absolute;
-    top: -1em;
+    bottom: -1em;
     left: -1em;
     
     perspective-origin: 50% calc(50% - 2em);
+    animation: cubeHeight var(--bounceSpeed) infinite linear;
+
+    @keyframes cubeHeight {
+        0%, 100% { height: 1.75em;}
+        8%, 93% { height: 2em; }
+    }
     
     .left, .right, .front, .back{
         position: absolute;
@@ -93,13 +113,13 @@ body{
 
 .cube:hover{
     .left, .right, .front, .back, .bottom, .top{
-        background: rgba(203, 72, 72, 0.744);
+        background: #85050597;
     }
 }
 
 .cube:mou{
     .left, .right, .front, .back, .bottom, .top{
-        background: green;
+        background: rgba(27, 107, 27, 0.808);
         left: 10em;
     }
 }
