@@ -7,6 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <>
     <body>
       <div className='scene'>
         <div className='floor'></div>
@@ -23,6 +24,8 @@ function App() {
         <div className='ball'></div>
       </div>
     </body>
+    <a href='YourNewFriend.html'>Click me to see more :D</a>
+    </>
   )
 }
 
